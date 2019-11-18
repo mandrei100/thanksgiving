@@ -6,10 +6,21 @@ const { Dish, Person } = require("../../db");
 
 router.get("/api/dishes", async(req, res, next) => {
     try {
-        res.send(await Dish.findAll());
+        res.send(await db.models.Dish.findAll());
     } catch (ex){
         next(ex);
     }
-}
+});
+
+router.post("/api/dishes", async(req, res, next)=> {
+    Dish.create(req.body)
+        .then(() => Dish.findAll())
+        .then(food => {
+            res.send(food);
+        })
+        .catch(next);
+
+
+})
 
 module.exports = router;
