@@ -19,8 +19,6 @@ router.post("/api/dishes", async(req, res, next)=> {
             res.send(food);
         })
         .catch(next);
-
-
 })
 
 module.exports = router;
